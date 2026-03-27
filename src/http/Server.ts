@@ -1,6 +1,6 @@
 import express, { type Application } from "express";
 import http from "node:http";
-import { UserRoute } from "../routes/UserRoute";
+import { UserRouter } from "../routes/UserRoute";
 
 class Server {
   private http: http.Server;
@@ -18,7 +18,7 @@ class Server {
   }
 
   configureRoutes(): void {
-    this.app.use(new UserRoute().router);
+    this.app.use("/user",new UserRouter().router);
   }
 
   public start(): void {

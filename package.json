@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "tsx src/http/index.ts",
+    "dev": "tsx watch src/http/index.ts",
     "db:push": "prisma db push"
   },
   "dependencies": {

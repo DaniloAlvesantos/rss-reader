@@ -1,18 +1,18 @@
 import { Router } from "express";
+import { UserController } from "../controllers/UserController";
+import { UserService } from "../services/UserService";
 
-class UserRoute {
-  public router: Router;
-  private userController: UserController;
+export class UserRouter {
+  public router: Router = Router();
 
   constructor() {
-    this.router = Router();
-    this.userController = new UserController();
-    this.configureRoutes();
+    this.setupRoutes();
   }
 
-  private configureRoutes(): void {
-    this.router.get("/", (req, res) => {});
+  private setupRoutes(): void {
+    const userService = new UserService();
+    const userController = new UserController(userService);
+
+    this.router.get("/all", userController.getAllUsers);
   }
 }
-
-export { UserRoute };

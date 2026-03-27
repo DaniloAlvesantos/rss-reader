@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client"
-  output   = "../generated/prisma"
+  output = "../prisma/generated"
 }
 
 datasource db {
@@ -8,7 +8,36 @@ datasource db {
 }
 
 model User {
-  id String @id @default(cuid())
-  name String
+  id    String @id @default(cuid())
+  name  String
   email String @unique
+
+  subscriptions UserSubscription[]
+}
+
+model Subscription {
+  id  String @id @default(nanoid())
+  url String @unique
+
+  interval Int @default(15)
+
+  lastPost DateTime?
+  lastGuid String?
+
+  users UserSubscription[]
+
+  @@index([lastGuid])
+}
+
+model UserSubscription {
+  userId         String
+  subscriptionId String
+
+  isActive Boolean  @default(true)
+  joinedAt DateTime @default(now())
+
+  user         User         @relation(fields: [userId], references: [id])
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+
+  @@id([userId, subscriptionId])
 }
