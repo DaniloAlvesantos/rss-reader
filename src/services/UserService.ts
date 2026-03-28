@@ -1,7 +1,16 @@
 import { prisma } from "../lib/prisma";
 import { User } from "../models/User";
+import { Authentication } from "./Authentication";
 
 class UserService {
+  public generateToken(userId: string): string {
+    return Authentication.generateToken(userId);
+  }
+
+  public verifyToken(token: string): string | object {
+    return Authentication.verifyToken(token);
+  }
+
   public async createUser(email: string, name: string): Promise<User> {
     const user = await prisma.user.create({
       data: {

@@ -2,10 +2,27 @@ import { z } from "zod";
 
 class Validator {
   private static instance: Validator;
-  private static readonly emailSchema = z.email({ pattern: z.regexes.email });
-  private static readonly nameSchema = z.string().trim().min(3).max(255);
-  private static readonly urlSchema = z.url({ protocol: /^https?$/ });
-  private static readonly dateTimeSchema = z.iso.datetime();
+
+  public static readonly emailSchema = z.email({
+    pattern: z.regexes.email,
+    error: "Invalid email address",
+  });
+
+  public static readonly nameSchema = z
+    .string()
+    .trim()
+    .min(3, { error: "Name must be at least 3 characters long" })
+    .max(255, { error: "Name must be less than 255 characters long" });
+
+  public static readonly urlSchema = z.url({
+    protocol: /^https?$/,
+    error: "Invalid URL",
+  });
+
+  public static readonly dateTimeSchema = z.iso.datetime({
+    error: "Invalid date time format",
+  });
+
 
   private constructor() {
     if (Validator.instance === null) {

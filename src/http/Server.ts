@@ -1,6 +1,7 @@
 import express, { type Application } from "express";
 import http from "node:http";
 import { UserRouter } from "../routes/UserRoute";
+import { FirebaseLib } from "../lib/FirebaseLib";
 
 class Server {
   private http: http.Server;
@@ -13,15 +14,20 @@ class Server {
     this.http = http.createServer(this.app);
   }
 
-  configureMiddlewares(): void {
+  private initializeInfrastructure(): void {
+    FirebaseLib.init();
+  }
+
+  private configureMiddlewares(): void {
     this.app.use(express.json());
   }
 
-  configureRoutes(): void {
-    this.app.use("/user",new UserRouter().router);
+  private configureRoutes(): void {
+    this.app.use("/user", new UserRouter().router);
   }
 
   public start(): void {
+    this.initializeInfrastructure();
     this.configureMiddlewares();
     this.configureRoutes();
 
