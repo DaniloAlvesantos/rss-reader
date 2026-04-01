@@ -44,11 +44,9 @@ class UserController {
   };
 
   public getUserById = async ({ req, res }: DefaultControllerProps) => {
-    const schema = z.object({
-      id: z.string(),
-    });
+    const { id } = req.user;
 
-    const { id } = schema.parse(req.params);
+    if (!id) return res.status(401).json({ error: "Unauthorized" });
 
     try {
       const user = await this.userService.getUserById(id);
@@ -83,6 +81,7 @@ class UserController {
     });
 
     const { email, code } = schema.parse(req.body);
+    // add code verification system
   };
 
   public logout = async ({ req, res }: DefaultControllerProps) => {

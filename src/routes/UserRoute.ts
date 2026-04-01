@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { UserController } from "../controllers/UserController";
 import { UserService } from "../services/UserService";
+import { AuthMiddleware } from "../middlewares/AuthMiddleware";
 
 export class UserRouter {
   public router: Router = Router();
@@ -23,5 +24,8 @@ export class UserRouter {
       userController.login({ req, res }),
     );
     // this.router.get("/logout", (req, res) => );
+    this.router.get("/me", AuthMiddleware.authenticate, (req, res) =>
+      userController.getUserById({ req, res }),
+    );
   }
 }

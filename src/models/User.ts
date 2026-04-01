@@ -13,7 +13,7 @@ class User {
   }
 
   public setId(id: string): void {
-    if (this.id === null) {
+    if (!this.id) {
       this.id = id;
     }
   }

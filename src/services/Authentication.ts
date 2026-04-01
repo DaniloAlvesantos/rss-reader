@@ -1,26 +1,35 @@
 import jwt from "jsonwebtoken";
+import type { JsonWebTokenPayload } from "../types/jwt";
+import type { StringValue } from "ms";
 
 class Authentication {
   private static readonly secret: string = process.env.JWT_SECRET || "secret";
-  private static readonly expires: number =
-    Number(process.env.JWT_EXPIRES) ?? 3000;
-  private static readonly alg: jwt.Algorithm = "HS256";
+  private static readonly expires: StringValue =
+    (process.env.JWT_EXPIRES as StringValue) ?? "1d";
 
   public static generateToken(userId: string): string {
-    const token = jwt.sign({ userId }, this.secret, {
+    const token = jwt.sign({ id: userId }, this.secret, {
       expiresIn: this.expires,
-      algorithm: this.alg,
+      algorithm: "HS256",
     });
 
     return token;
   }
 
-  public static verifyToken(token: string): string | jwt.JwtPayload {
+  public static verifyToken(token: string): JsonWebTokenPayload | null {
     try {
-      const decoded = jwt.verify(token, this.secret);
-      return decoded;
+      const cleanToken = token.startsWith("Bearer ")
+        ? token.split(" ")[1]
+        : token;
+      const decoded = jwt.verify(cleanToken!, this.secret) as any;
+
+
+      if (decoded && typeof decoded === "object" && "id" in decoded) {
+        return { id: decoded.id };
+      }
+      return null;
     } catch (error) {
-      throw new Error("Invalid token");
+      return null;
     }
   }
 }

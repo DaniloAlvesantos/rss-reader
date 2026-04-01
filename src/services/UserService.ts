@@ -1,5 +1,6 @@
 import { prisma } from "../lib/prisma";
 import { User } from "../models/User";
+import type { JsonWebTokenPayload } from "../types/jwt";
 import { Authentication } from "./Authentication";
 
 class UserService {
@@ -7,12 +8,20 @@ class UserService {
     return Authentication.generateToken(userId);
   }
 
-  public verifyToken(token: string): string | object {
+  public verifyToken(token: string): JsonWebTokenPayload | null {
     return Authentication.verifyToken(token);
   }
 
   public async createUser(email: string, name: string): Promise<User> {
-    const user = await prisma.user.create({
+    let user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (user) return new User(user.id, user.email, user.name);
+    
+    user = await prisma.user.create({
       data: {
         email,
         name,
