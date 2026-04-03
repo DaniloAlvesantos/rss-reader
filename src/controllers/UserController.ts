@@ -10,12 +10,13 @@ class UserController {
     const schema = z.object({
       email: Validator.emailSchema,
       name: Validator.nameSchema,
+      passowrd: Validator.passwordSchema
     });
 
-    const { email, name } = schema.parse(req.body);
+    const { email, name, passowrd } = schema.parse(req.body);
 
     try {
-      const user = await this.userService.createUser(email, name);
+      const user = await this.userService.createUser(email, name, passowrd);
       const token = this.userService.generateToken(user.getId());
 
       return res.status(201).json({ user, token });
@@ -71,17 +72,27 @@ class UserController {
     }
   };
 
+  
+
   public login = async ({ req, res }: DefaultControllerProps) => {
     const schema = z.object({
       email: Validator.emailSchema,
-      code: z
-        .string()
-        .max(6, { error: "Code must be 6 characters long" })
-        .min(6, { error: "Code must be 6 characters long" }),
+      passowrd: Validator.passwordSchema,
     });
 
-    const { email, code } = schema.parse(req.body);
-    // add code verification system
+    const {email, passowrd} = schema.parse(req.body);
+  
+    try {
+      const user = await this.userService.login(email, passowrd);
+  
+      if (!user) return res.status(401).json({ error: "Invalid credentials" });
+
+      const token = this.userService.generateToken(user.getId());
+
+      return res.status(200).json({ user, token });
+    } catch(err) {
+      return res.status(500).json({ error: "Internal server error" });
+    }
   };
 
   public logout = async ({ req, res }: DefaultControllerProps) => {

@@ -23,6 +23,9 @@ class Validator {
     error: "Invalid date time format",
   });
 
+  public static readonly passwordSchema = z.string().min(8, {
+    error: "Password must be at least 8 characters long",
+  });
 
   private constructor() {
     if (Validator.instance === null) {

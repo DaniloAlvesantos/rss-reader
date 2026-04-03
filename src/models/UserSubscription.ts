@@ -57,15 +57,6 @@ class UserSubscription {
   public toString(): string {
     return `UserSubscription { userId: ${this._userId}, subscriptionId: ${this._subscriptionId}, isActive: ${this._isActive}, joinedAt: ${this._joinedAt} }`;
   }
-
-  public toJSON(): Object {
-    return {
-      userId: this._userId,
-      subscriptionId: this._subscriptionId,
-      isActive: this._isActive,
-      joinedAt: this._joinedAt,
-    };
-  }
 }
 
 export { UserSubscription };

@@ -4,12 +4,14 @@ class User {
   private id!: string;
   private _email!: string;
   private _name!: string;
+  private _password!: string;
   private readonly validator: Validator = Validator.getInstance();
 
-  constructor(id: string, email: string, name: string) {
+  constructor(id: string, email: string, name: string, password: string) {
     this.setId(id);
     this.setEmail(email);
     this.setName(name);
+    this.setPassword(password);
   }
 
   public setId(id: string): void {
@@ -34,6 +36,12 @@ class User {
     }
   }
 
+  public setPassword(password: string): void {
+    if (!this._password) {
+      this._password = password;
+    }
+  }
+
   public getId(): string {
     return this.id;
   }
@@ -46,16 +54,12 @@ class User {
     return this._name;
   }
 
-  public tostring(): string {
-    return `User { id: ${this.id}, email: ${this._email}, name: ${this._name} }`;
+  public getPassword(): string {
+    return this._password;
   }
 
-  public toJSON(): Object {
-    return {
-      id: this.id,
-      email: this._email,
-      name: this._name,
-    };
+  public tostring(): string {
+    return `User { id: ${this.id}, email: ${this._email}, name: ${this._name} }`;
   }
 }
 

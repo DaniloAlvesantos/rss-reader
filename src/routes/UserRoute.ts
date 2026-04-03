@@ -23,7 +23,9 @@ export class UserRouter {
     this.router.post("/login", (req, res) =>
       userController.login({ req, res }),
     );
-    // this.router.get("/logout", (req, res) => );
+    this.router.post("/logout", (req, res) =>
+      userController.logout({ req, res }),
+    );
     this.router.get("/me", AuthMiddleware.authenticate, (req, res) =>
       userController.getUserById({ req, res }),
     );

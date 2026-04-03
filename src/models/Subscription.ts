@@ -68,16 +68,6 @@ class Subscription {
   public toString(): string {
     return `Subscription { id: ${this.id}, url: ${this.url}, interval: ${this.interval}, lastGuid: ${this.lastGuid}, lastPost: ${this.lastPost} }`;
   }
-
-  public toJSON(): Object {
-    return {
-      id: this.id,
-      url: this.url,
-      interval: this.interval,
-      lastGuid: this.lastGuid,
-      lastPost: this.lastPost,
-    };
-  }
 }
 
 export { Subscription };
