@@ -19,7 +19,6 @@ services:
     ports:
       - "8081:8081"
     environment:
-      # The format is label:hostname:port
       - REDIS_HOSTS=local:redis:6379
 
   database:
@@ -28,7 +27,6 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      # Fix: Mount to /var/lib/postgresql instead of /data
       - database_data:/var/lib/postgresql
     environment:
       - POSTGRES_PASSWORD=docker

@@ -16,7 +16,7 @@ class UserService {
   public async createUser(
     email: string,
     name: string,
-    passowrd: string,
+    password: string,
   ): Promise<User> {
     let user = await prisma.user.findUnique({
       where: {
@@ -24,16 +24,17 @@ class UserService {
       },
     });
 
-    if (user) return new User(user.id, user.email, user.name, passowrd);
-
-    const { hash, salts } = Password.hash(passowrd);
+    
+    if (user) return new User(user.id, user.email, user.name, password);
+    
+    const { hash, salt } = Password.hash(password);
 
     user = await prisma.user.create({
       data: {
         email,
         name,
         password: hash,
-        passwordSalt: salts,
+        passwordSalt: salt,
       },
     });
 
@@ -49,10 +50,13 @@ class UserService {
 
     if (!user) return null;
 
+    const verifiedPassword = Password.compare(
+      password,
+      user.password,
+      user.passwordSalt,
+    );
 
-    const verifiedPassword = Password.compare(password, user.password, user.passwordSalt);
-
-    if(!verifiedPassword) {
+    if (!verifiedPassword) {
       return null;
     }
 
@@ -78,12 +82,7 @@ class UserService {
       },
     });
 
-    return new User(
-      updated.id,
-      updated.email,
-      updated.name,
-      updated.password,
-    );
+    return new User(updated.id, updated.email, updated.name, updated.password);
   }
 
   public async getUserByEmail(email: string): Promise<User | null> {
@@ -113,6 +112,14 @@ class UserService {
   public async fetchAll(): Promise<User[]> {
     const users = await prisma.user.findMany();
     return users.map((d) => new User(d.id, d.email, d.name, d.password));
+  }
+
+  public async deleteUser(id: string): Promise<void> {
+    await prisma.user.delete({
+      where: {
+        id,
+      },
+    });
   }
 }
 

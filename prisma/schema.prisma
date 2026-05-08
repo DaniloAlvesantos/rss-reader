@@ -18,8 +18,10 @@ model User {
 }
 
 model Subscription {
-  id  String @id @default(nanoid())
-  url String @unique
+  id    String  @id @default(nanoid())
+  url   String  @unique
+  logo  String?
+  title String
 
   interval Int @default(15)
 

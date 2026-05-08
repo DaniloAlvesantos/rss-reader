@@ -86,6 +86,8 @@ export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof User
 export const SubscriptionScalarFieldEnum = {
   id: 'id',
   url: 'url',
+  logo: 'logo',
+  title: 'title',
   interval: 'interval',
   lastPost: 'lastPost',
   lastGuid: 'lastGuid'

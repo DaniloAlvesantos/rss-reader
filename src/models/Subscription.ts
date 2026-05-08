@@ -2,6 +2,8 @@ import { Validator } from "../utils/Validator";
 
 class Subscription {
   private id!: string;
+  private title!: string;
+  private logo?: string;
   private url!: string;
   private interval!: number;
   private lastGuid!: string;
@@ -10,19 +12,30 @@ class Subscription {
   constructor(
     id: string,
     url: string,
+    title: string,
     interval: number,
     lastGuid: string,
     lastPost: string,
+    logo?: string,
   ) {
     this.setId(id);
+    this.setTitle(title);
     this.setUrl(url);
     this.setInterval(interval);
     this.setLastGuid(lastGuid);
     this.setLastPost(lastPost);
+
+    if (logo) {
+      this.setLogo(logo);
+    }
   }
 
   public getId(): string {
     return this.id;
+  }
+
+  public getTitle(): string {
+    return this.title;
   }
 
   public getUrl(): string {
@@ -41,10 +54,18 @@ class Subscription {
     return this.lastPost;
   }
 
+  public getLogo(): string | undefined {
+    return this.logo;
+  }
+
   public setId(id: string): void {
     if (this.id === null) {
       this.id = id;
     }
+  }
+
+  public setTitle(title: string): void {
+    this.title = title;
   }
 
   public setUrl(url: string): void {
@@ -63,6 +84,10 @@ class Subscription {
 
   public setLastPost(lastPost: string): void {
     this.lastPost = lastPost;
+  }
+
+  public setLogo(logo: string): void {
+    this.logo = logo;
   }
 
   public toString(): string {

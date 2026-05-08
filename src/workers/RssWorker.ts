@@ -1,0 +1,3 @@
+class RssWorker {}
+
+export { RssWorker };

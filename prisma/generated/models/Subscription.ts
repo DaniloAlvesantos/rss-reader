@@ -37,6 +37,8 @@ export type SubscriptionSumAggregateOutputType = {
 export type SubscriptionMinAggregateOutputType = {
   id: string | null
   url: string | null
+  logo: string | null
+  title: string | null
   interval: number | null
   lastPost: Date | null
   lastGuid: string | null
@@ -45,6 +47,8 @@ export type SubscriptionMinAggregateOutputType = {
 export type SubscriptionMaxAggregateOutputType = {
   id: string | null
   url: string | null
+  logo: string | null
+  title: string | null
   interval: number | null
   lastPost: Date | null
   lastGuid: string | null
@@ -53,6 +57,8 @@ export type SubscriptionMaxAggregateOutputType = {
 export type SubscriptionCountAggregateOutputType = {
   id: number
   url: number
+  logo: number
+  title: number
   interval: number
   lastPost: number
   lastGuid: number
@@ -71,6 +77,8 @@ export type SubscriptionSumAggregateInputType = {
 export type SubscriptionMinAggregateInputType = {
   id?: true
   url?: true
+  logo?: true
+  title?: true
   interval?: true
   lastPost?: true
   lastGuid?: true
@@ -79,6 +87,8 @@ export type SubscriptionMinAggregateInputType = {
 export type SubscriptionMaxAggregateInputType = {
   id?: true
   url?: true
+  logo?: true
+  title?: true
   interval?: true
   lastPost?: true
   lastGuid?: true
@@ -87,6 +97,8 @@ export type SubscriptionMaxAggregateInputType = {
 export type SubscriptionCountAggregateInputType = {
   id?: true
   url?: true
+  logo?: true
+  title?: true
   interval?: true
   lastPost?: true
   lastGuid?: true
@@ -182,6 +194,8 @@ export type SubscriptionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 export type SubscriptionGroupByOutputType = {
   id: string
   url: string
+  logo: string | null
+  title: string
   interval: number
   lastPost: Date | null
   lastGuid: string | null
@@ -213,6 +227,8 @@ export type SubscriptionWhereInput = {
   NOT?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
   id?: Prisma.StringFilter<"Subscription"> | string
   url?: Prisma.StringFilter<"Subscription"> | string
+  logo?: Prisma.StringNullableFilter<"Subscription"> | string | null
+  title?: Prisma.StringFilter<"Subscription"> | string
   interval?: Prisma.IntFilter<"Subscription"> | number
   lastPost?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   lastGuid?: Prisma.StringNullableFilter<"Subscription"> | string | null
@@ -222,6 +238,8 @@ export type SubscriptionWhereInput = {
 export type SubscriptionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  logo?: Prisma.SortOrderInput | Prisma.SortOrder
+  title?: Prisma.SortOrder
   interval?: Prisma.SortOrder
   lastPost?: Prisma.SortOrderInput | Prisma.SortOrder
   lastGuid?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -234,6 +252,8 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
   OR?: Prisma.SubscriptionWhereInput[]
   NOT?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
+  logo?: Prisma.StringNullableFilter<"Subscription"> | string | null
+  title?: Prisma.StringFilter<"Subscription"> | string
   interval?: Prisma.IntFilter<"Subscription"> | number
   lastPost?: Prisma.DateTimeNullableFilter<"Subscription"> | Date | string | null
   lastGuid?: Prisma.StringNullableFilter<"Subscription"> | string | null
@@ -243,6 +263,8 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
 export type SubscriptionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  logo?: Prisma.SortOrderInput | Prisma.SortOrder
+  title?: Prisma.SortOrder
   interval?: Prisma.SortOrder
   lastPost?: Prisma.SortOrderInput | Prisma.SortOrder
   lastGuid?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -259,6 +281,8 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
   NOT?: Prisma.SubscriptionScalarWhereWithAggregatesInput | Prisma.SubscriptionScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Subscription"> | string
   url?: Prisma.StringWithAggregatesFilter<"Subscription"> | string
+  logo?: Prisma.StringNullableWithAggregatesFilter<"Subscription"> | string | null
+  title?: Prisma.StringWithAggregatesFilter<"Subscription"> | string
   interval?: Prisma.IntWithAggregatesFilter<"Subscription"> | number
   lastPost?: Prisma.DateTimeNullableWithAggregatesFilter<"Subscription"> | Date | string | null
   lastGuid?: Prisma.StringNullableWithAggregatesFilter<"Subscription"> | string | null
@@ -267,6 +291,8 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
 export type SubscriptionCreateInput = {
   id?: string
   url: string
+  logo?: string | null
+  title: string
   interval?: number
   lastPost?: Date | string | null
   lastGuid?: string | null
@@ -276,6 +302,8 @@ export type SubscriptionCreateInput = {
 export type SubscriptionUncheckedCreateInput = {
   id?: string
   url: string
+  logo?: string | null
+  title: string
   interval?: number
   lastPost?: Date | string | null
   lastGuid?: string | null
@@ -285,6 +313,8 @@ export type SubscriptionUncheckedCreateInput = {
 export type SubscriptionUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   interval?: Prisma.IntFieldUpdateOperationsInput | number
   lastPost?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastGuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -294,6 +324,8 @@ export type SubscriptionUpdateInput = {
 export type SubscriptionUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   interval?: Prisma.IntFieldUpdateOperationsInput | number
   lastPost?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastGuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -303,6 +335,8 @@ export type SubscriptionUncheckedUpdateInput = {
 export type SubscriptionCreateManyInput = {
   id?: string
   url: string
+  logo?: string | null
+  title: string
   interval?: number
   lastPost?: Date | string | null
   lastGuid?: string | null
@@ -311,6 +345,8 @@ export type SubscriptionCreateManyInput = {
 export type SubscriptionUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   interval?: Prisma.IntFieldUpdateOperationsInput | number
   lastPost?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastGuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -319,6 +355,8 @@ export type SubscriptionUpdateManyMutationInput = {
 export type SubscriptionUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   interval?: Prisma.IntFieldUpdateOperationsInput | number
   lastPost?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastGuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -327,6 +365,8 @@ export type SubscriptionUncheckedUpdateManyInput = {
 export type SubscriptionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  logo?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   interval?: Prisma.SortOrder
   lastPost?: Prisma.SortOrder
   lastGuid?: Prisma.SortOrder
@@ -339,6 +379,8 @@ export type SubscriptionAvgOrderByAggregateInput = {
 export type SubscriptionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  logo?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   interval?: Prisma.SortOrder
   lastPost?: Prisma.SortOrder
   lastGuid?: Prisma.SortOrder
@@ -347,6 +389,8 @@ export type SubscriptionMaxOrderByAggregateInput = {
 export type SubscriptionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   url?: Prisma.SortOrder
+  logo?: Prisma.SortOrder
+  title?: Prisma.SortOrder
   interval?: Prisma.SortOrder
   lastPost?: Prisma.SortOrder
   lastGuid?: Prisma.SortOrder
@@ -361,6 +405,10 @@ export type SubscriptionScalarRelationFilter = {
   isNot?: Prisma.SubscriptionWhereInput
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -371,10 +419,6 @@ export type IntFieldUpdateOperationsInput = {
 
 export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
 }
 
 export type SubscriptionCreateNestedOneWithoutUsersInput = {
@@ -394,6 +438,8 @@ export type SubscriptionUpdateOneRequiredWithoutUsersNestedInput = {
 export type SubscriptionCreateWithoutUsersInput = {
   id?: string
   url: string
+  logo?: string | null
+  title: string
   interval?: number
   lastPost?: Date | string | null
   lastGuid?: string | null
@@ -402,6 +448,8 @@ export type SubscriptionCreateWithoutUsersInput = {
 export type SubscriptionUncheckedCreateWithoutUsersInput = {
   id?: string
   url: string
+  logo?: string | null
+  title: string
   interval?: number
   lastPost?: Date | string | null
   lastGuid?: string | null
@@ -426,6 +474,8 @@ export type SubscriptionUpdateToOneWithWhereWithoutUsersInput = {
 export type SubscriptionUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   interval?: Prisma.IntFieldUpdateOperationsInput | number
   lastPost?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastGuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -434,6 +484,8 @@ export type SubscriptionUpdateWithoutUsersInput = {
 export type SubscriptionUncheckedUpdateWithoutUsersInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   url?: Prisma.StringFieldUpdateOperationsInput | string
+  logo?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
   interval?: Prisma.IntFieldUpdateOperationsInput | number
   lastPost?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   lastGuid?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -473,6 +525,8 @@ export type SubscriptionCountOutputTypeCountUsersArgs<ExtArgs extends runtime.Ty
 export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   url?: boolean
+  logo?: boolean
+  title?: boolean
   interval?: boolean
   lastPost?: boolean
   lastGuid?: boolean
@@ -483,6 +537,8 @@ export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.Internal
 export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   url?: boolean
+  logo?: boolean
+  title?: boolean
   interval?: boolean
   lastPost?: boolean
   lastGuid?: boolean
@@ -491,6 +547,8 @@ export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   url?: boolean
+  logo?: boolean
+  title?: boolean
   interval?: boolean
   lastPost?: boolean
   lastGuid?: boolean
@@ -499,12 +557,14 @@ export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 export type SubscriptionSelectScalar = {
   id?: boolean
   url?: boolean
+  logo?: boolean
+  title?: boolean
   interval?: boolean
   lastPost?: boolean
   lastGuid?: boolean
 }
 
-export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "url" | "interval" | "lastPost" | "lastGuid", ExtArgs["result"]["subscription"]>
+export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "url" | "logo" | "title" | "interval" | "lastPost" | "lastGuid", ExtArgs["result"]["subscription"]>
 export type SubscriptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   users?: boolean | Prisma.Subscription$usersArgs<ExtArgs>
   _count?: boolean | Prisma.SubscriptionCountOutputTypeDefaultArgs<ExtArgs>
@@ -520,6 +580,8 @@ export type $SubscriptionPayload<ExtArgs extends runtime.Types.Extensions.Intern
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     url: string
+    logo: string | null
+    title: string
     interval: number
     lastPost: Date | null
     lastGuid: string | null
@@ -949,6 +1011,8 @@ export interface Prisma__SubscriptionClient<T, Null = never, ExtArgs extends run
 export interface SubscriptionFieldRefs {
   readonly id: Prisma.FieldRef<"Subscription", 'String'>
   readonly url: Prisma.FieldRef<"Subscription", 'String'>
+  readonly logo: Prisma.FieldRef<"Subscription", 'String'>
+  readonly title: Prisma.FieldRef<"Subscription", 'String'>
   readonly interval: Prisma.FieldRef<"Subscription", 'Int'>
   readonly lastPost: Prisma.FieldRef<"Subscription", 'DateTime'>
   readonly lastGuid: Prisma.FieldRef<"Subscription", 'String'>

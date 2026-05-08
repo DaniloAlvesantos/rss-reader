@@ -1,7 +1,8 @@
 import express, { type Application } from "express";
 import http from "node:http";
-import { UserRouter } from "../routes/UserRoute";
+import { UserRoute } from "../routes/UserRoute";
 import { FirebaseLib } from "../lib/FirebaseLib";
+import { SubscriptionRoute } from "../routes/SubscriptionRoute";
 
 class Server {
   private http: http.Server;
@@ -23,7 +24,8 @@ class Server {
   }
 
   private configureRoutes(): void {
-    this.app.use("/user", new UserRouter().router);
+    this.app.use("/user", new UserRoute().router);
+    this.app.use("/subscription", new SubscriptionRoute().router);
   }
 
   public start(): void {

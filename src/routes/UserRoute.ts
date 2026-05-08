@@ -3,7 +3,7 @@ import { UserController } from "../controllers/UserController";
 import { UserService } from "../services/UserService";
 import { AuthMiddleware } from "../middlewares/AuthMiddleware";
 
-export class UserRouter {
+export class UserRoute {
   public router: Router = Router();
 
   constructor() {

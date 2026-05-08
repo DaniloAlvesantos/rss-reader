@@ -12,7 +12,7 @@ class UserController {
       name: Validator.nameSchema,
       passowrd: Validator.passwordSchema
     });
-
+    
     const { email, name, passowrd } = schema.parse(req.body);
 
     try {
@@ -71,8 +71,6 @@ class UserController {
       return res.status(500).json({ error: "Internal server error" });
     }
   };
-
-  
 
   public login = async ({ req, res }: DefaultControllerProps) => {
     const schema = z.object({
